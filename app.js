@@ -22,8 +22,15 @@ const getTypeColor = type => {
 const handlePageLoaded = async () => {
   try {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=15&offset=0')
-  } catch (error) {
 
+    if (!response.ok) {
+      throw new Error('Data could not be reached.')
+    }
+
+    const { results: pokeApiResults } = await response.json()
+    const promises = pokeApiResults.map(result => fetch(result.url))
+    console.log(promises)
+  } catch (error) {
     console.log('Algo deu erradus', error)
   }
 }
