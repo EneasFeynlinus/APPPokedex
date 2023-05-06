@@ -18,3 +18,14 @@ const getTypeColor = type => {
     fighting: '#E6E0D4'
   }[type] || normal
 }
+
+const handlePageLoaded = async () => {
+  try {
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=15&offset=0')
+  } catch (error) {
+
+    console.log('Algo deu erradus', error)
+  }
+}
+
+handlePageLoaded()
